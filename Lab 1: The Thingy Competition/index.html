@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Turn any photo into a playful tile puzzle.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SnapSolve — Turn any moment into a puzzle">
+    <meta property="og:description" content="Upload a photo or capture a moment, then turn it into a playful tile puzzle.">
+    <meta property="og:url" content="https://vaipujary.github.io/ECE-60141/">
+    <meta property="og:image" content="https://vaipujary.github.io/ECE-60141/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SnapSolve — Turn any moment into a puzzle">
+    <meta name="twitter:description" content="Upload a photo or capture a moment, then turn it into a playful tile puzzle.">
+    <meta name="twitter:image" content="https://vaipujary.github.io/ECE-60141/og.png">
+    <title>SnapSolve — Turn any moment into a puzzle</title>
+    <link rel="stylesheet" href="static/styles.css">
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <button class="brand" id="brand-home" type="button" aria-label="Return to SnapSolve home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>SnapSolve</span>
+      </button>
+      <button class="sound-button" id="sound-toggle" type="button" aria-pressed="false" aria-label="Mute sounds">
+        <span id="sound-icon" aria-hidden="true">♪</span>
+        <span id="sound-label">Sound on</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="screen home-screen is-active" id="home-screen" aria-labelledby="home-title">
+        <div class="home-copy">
+          <p class="eyebrow">A puzzle made from your world</p>
+          <h1 id="home-title">Turn any moment<br>into a <em>puzzle.</em></h1>
+          <p class="intro">Choose a favorite photo or capture what is in front of you. SnapSolve does the rest.</p>
+        </div>
+
+        <div class="creation-grid" aria-label="Create a puzzle">
+          <button class="creation-card upload-card" id="upload-button" type="button">
+            <span class="card-art upload-art" aria-hidden="true">
+              <span class="photo-frame"><span class="sun"></span><span class="mountain mountain-one"></span><span class="mountain mountain-two"></span></span>
+            </span>
+            <span class="card-copy">
+              <strong>Upload a Photo</strong>
+              <small>Choose a JPEG, PNG, or WebP</small>
+            </span>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </button>
+
+          <button class="creation-card camera-card" id="camera-button" type="button">
+            <span class="card-art camera-art" aria-hidden="true">
+              <span class="camera-body"><span class="camera-lens"></span><span class="camera-flash"></span></span>
+            </span>
+            <span class="card-copy">
+              <strong>Take a Photo</strong>
+              <small>Use your computer's camera</small>
+            </span>
+            <span class="round-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+
+        <div class="difficulty-preview" aria-label="Available difficulties">
+          <span>Four ways to play</span>
+          <div><b>3×3</b><b>4×4</b><b>5×5</b><b>6×6</b></div>
+        </div>
+        <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp" hidden>
+      </section>
+
+      <section class="screen camera-screen" id="camera-screen" aria-labelledby="camera-title">
+        <div class="section-heading compact-heading">
+          <button class="back-button" data-action="home" type="button">← Back</button>
+          <p class="eyebrow">Camera</p>
+          <h2 id="camera-title">Frame your moment</h2>
+          <p>Everything inside the square becomes your puzzle.</p>
+        </div>
+        <div class="camera-shell">
+          <video id="camera-video" autoplay playsinline muted></video>
+          <div class="camera-guide" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="camera-message" id="camera-message" role="status">Starting camera…</div>
+        </div>
+        <div class="camera-actions">
+          <button class="primary-button capture-button" id="capture-button" type="button" disabled>
+            <span aria-hidden="true"></span> Capture photo
+          </button>
+        </div>
+        <canvas id="camera-canvas" hidden></canvas>
+      </section>
+
+      <section class="screen setup-screen" id="setup-screen" aria-labelledby="setup-title">
+        <div class="section-heading">
+          <button class="back-button" data-action="home" type="button">← Choose another photo</button>
+          <p class="eyebrow">Your puzzle</p>
+          <h2 id="setup-title">Ready to mix it up?</h2>
+          <p>Pick a difficulty, then take one last look.</p>
+        </div>
+        <div class="setup-layout">
+          <div class="photo-stage">
+            <img id="preview-image" alt="Your selected puzzle image">
+            <span class="photo-badge">Preview</span>
+          </div>
+          <div class="setup-panel">
+            <div>
+              <p class="control-label">Choose a difficulty</p>
+              <div class="difficulty-list" id="difficulty-list">
+                <button class="difficulty-option is-selected" type="button" data-size="3" data-label="Easy">
+                  <span><strong>Easy</strong><small>A quick warm-up</small></span><b>3 × 3</b>
+                </button>
+                <button class="difficulty-option" type="button" data-size="4" data-label="Medium">
+                  <span><strong>Medium</strong><small>A balanced challenge</small></span><b>4 × 4</b>
+                </button>
+                <button class="difficulty-option" type="button" data-size="5" data-label="Hard">
+                  <span><strong>Hard</strong><small>For puzzle pros</small></span><b>5 × 5</b>
+                </button>
+                <button class="difficulty-option" type="button" data-size="6" data-label="Expert">
+                  <span><strong>Expert</strong><small>Bring your focus</small></span><b>6 × 6</b>
+                </button>
+              </div>
+            </div>
+            <button class="primary-button start-button" id="start-button" type="button">Shuffle &amp; start <span>→</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen game-screen" id="game-screen" aria-labelledby="game-title">
+        <div class="game-header">
+          <div>
+            <button class="back-button" data-action="setup" type="button">← Back to preview</button>
+            <h2 id="game-title"><span id="game-difficulty">Easy</span> puzzle</h2>
+          </div>
+          <div class="game-stats" aria-label="Puzzle status">
+            <div><small>Time</small><strong id="timer">00:00</strong></div>
+            <i></i>
+            <div><small>Moves</small><strong id="move-count">0</strong></div>
+          </div>
+        </div>
+
+        <div class="game-layout">
+          <div class="board-wrap">
+            <div class="puzzle-board" id="puzzle-board" aria-label="Puzzle board"></div>
+          </div>
+          <aside class="game-tools">
+            <p>Click one tile, then another to swap them.</p>
+            <button class="tool-button" id="preview-button" type="button"><span aria-hidden="true">◉</span> Hold to preview</button>
+            <button class="tool-button" id="reshuffle-button" type="button"><span aria-hidden="true">↻</span> Reshuffle</button>
+            <button class="tool-button danger-tool" data-action="home" type="button"><span aria-hidden="true">⌂</span> New photo</button>
+          </aside>
+        </div>
+        <div class="preview-overlay" id="preview-overlay" aria-hidden="true">
+          <img id="overlay-image" alt="">
+          <span>Preview</span>
+        </div>
+      </section>
+
+      <section class="screen complete-screen" id="complete-screen" aria-labelledby="complete-title">
+        <div class="confetti" id="confetti" aria-hidden="true"></div>
+        <div class="complete-card">
+          <p class="eyebrow">Puzzle complete</p>
+          <h2 id="complete-title">You nailed it!</h2>
+          <p class="complete-subtitle">Every piece found its place.</p>
+          <div class="complete-photo-wrap">
+            <img id="complete-image" alt="Your completed puzzle image">
+            <span class="complete-check" aria-hidden="true">✓</span>
+          </div>
+          <div class="final-stats">
+            <div><small>Final time</small><strong id="final-time">00:00</strong></div>
+            <div><small>Total moves</small><strong id="final-moves">0</strong></div>
+            <div><small>Difficulty</small><strong id="final-difficulty">Easy</strong></div>
+          </div>
+          <div class="complete-actions">
+            <button class="primary-button" id="play-again-button" type="button">Play again <span>↻</span></button>
+            <button class="secondary-button" data-action="home" type="button">Create a new puzzle</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="static/app.js" defer></script>
+  </body>
+</html>

@@ -1,5 +1,7 @@
 # Thingy Prompt: SnapSolve
 
+https://vaipujary.github.io/ECE-60141/
+
 ## What I Am Building
 
 SnapSolve is an interactive puzzle game that turns any image into a puzzle. The user can upload an existing picture or take a new picture using their computer's camera. The application prepares the image as a square without distorting it, divides it into tiles, shuffles the tiles, and lets the user solve the puzzle by rearranging them. The user chooses the difficulty before starting.
@@ -88,12 +90,12 @@ Leave this section empty while building. Fill it in after the demo, just before 
 
 ### A) Was this fun? Why or why not?
 
-Yes. It was fun to turn my own photos into a game and see the finished puzzle working.
+Yes. It was fun to turn my own photos into a game and see the finished puzzle working. I enjoyed being able to create something out of my imagination without having to put in all of the effort. 
 
 ### B) What did I learn?
 
-I learned how Python, JavaScript, and browser camera tools can work together. I also learned how to publish a site with GitHub Pages.
+I learned how AI can so easily make Python, JavaScript, and browser camera tools work together. I also learned that it is capable of publishing a site with GitHub Pages. AI is advancing at a rapid pace. 
 
 ### C) What would I do differently?
 
-I would test the camera and smaller screen layouts earlier. I would also leave more time for tile animations.
+I don't think I would do anything differently. I am happy with the results. There are a lot of potential features that could be added, as outlined in the Nice To Have section, but with AI they are all easy to implement. 

@@ -1,24 +1,10 @@
 # Thingy Prompt: SnapSolve
 
-This file is the running record of the SnapSolve application as it is built.
-
 ## What I Am Building
 
 SnapSolve is an interactive puzzle game that turns any image into a puzzle. The user can upload an existing picture or take a new picture using their computer's camera. The application prepares the image as a square without distorting it, divides it into tiles, shuffles the tiles, and lets the user solve the puzzle by rearranging them. The user chooses the difficulty before starting.
 
 The main idea is to make puzzle creation part of the experience. I can point the camera at people or objects in the room, take a picture, and immediately turn that exact moment into a playable puzzle.
-
-## Agreed Implementation
-
-This section records the decisions used in the current version.
-
-- The app uses Flask for a small local Python server.
-- The local Flask version uses Pillow to apply phone-camera orientation, make a centered square crop, and resize the photo to 1200 × 1200 pixels. It never stretches the image.
-- The public GitHub Pages version performs the same centered square crop in the browser because GitHub Pages cannot run Python. Photos stay on the user's device in both versions.
-- The puzzle runs in the browser with HTML, CSS, and JavaScript.
-- The player clicks one tile and then another tile to swap them. This is the simplest reliable interaction for a classroom demo and works with a mouse, keyboard, or touch screen.
-- The first version keeps photos in browser memory only. It does not upload them to an external service or save them after the page closes.
-- The visual style uses warm cream, deep green, coral, and gold. The layout is designed to fit a normal laptop screen and adapt to smaller screens.
 
 ## Guidelines
 
@@ -47,7 +33,7 @@ Write all text meant for humans in plain English:
 
 ## Features
 
-### Implemented
+### Must have:
 
 - The home screen clearly presents **Upload a Photo** and **Take a Photo**.
 - The app accepts JPEG, PNG, and WebP images up to 12 MB.
@@ -68,17 +54,13 @@ Write all text meant for humans in plain English:
 - Errors for missing, unsupported, and oversized images use clear messages.
 - A GitHub Actions workflow publishes the site from the `main` branch to `https://vaipujary.github.io/ECE-60141/`.
 
-### Deferred ideas
-
-These remain possible later additions. They are not part of the current version.
+### Nice to have:
 
 - Add a 3… 2… 1… countdown and shutter animation before a camera capture.
 - Animate the intact photo breaking into tiles before the puzzle begins.
 - Add a separate limited Hint feature and track hints used.
-- Add a Memory Challenge mode.
 - Add scoring, local best scores, and personal-best messages.
-- Replace instant redraws with position-to-position tile movement animations.
-- Do not implement interlocking jigsaw shapes unless the rectangular version remains reliable.
+- Interlocking jigsaw shapes
 
 ## Look and Feel
 
@@ -106,12 +88,12 @@ Leave this section empty while building. Fill it in after the demo, just before 
 
 ### A) Was this fun? Why or why not?
 
-TODO
+Yes. It was fun to turn my own photos into a game and see the finished puzzle working.
 
 ### B) What did I learn?
 
-TODO
+I learned how Python, JavaScript, and browser camera tools can work together. I also learned how to publish a site with GitHub Pages.
 
 ### C) What would I do differently?
 
-TODO
+I would test the camera and smaller screen layouts earlier. I would also leave more time for tile animations.
